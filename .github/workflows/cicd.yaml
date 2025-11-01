@@ -43,8 +43,8 @@ jobs:
             shell: bash
             run: |
                 echo ${{needs.ci.outputs.commit_id}}
-                sudo apt-get update
-                sudo apt-get install -y yq
+                sudo apt update
+                sudo apt install yq
                 yq -Yi 'image.tag = "${{needs.ci.outputs.commit_id}}"' charts/python-app/values.yaml
         -
             name: Commit changes
