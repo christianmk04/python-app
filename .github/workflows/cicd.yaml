@@ -29,11 +29,19 @@ jobs:
             with:
                 push: true
                 tags: christianmk/python-app:${{ env.COMMIT_ID }}
+        outputs:
+            commit_id: ${{ env.COMMIT_ID }}
         
     cd:
         needs: ci
         runs-on: self-hosted
         steps:
+        
+        - 
+            name: Modify values file
+            shell: bash
+            run: |
+                echo ${{needs.ci.outputs.commit_id}}
         
         -
             name: Install ArgoCD CLI
@@ -47,7 +55,7 @@ jobs:
             name: Argocd app sync
             shell: bash
             run: |
-                argocd login https://argocd-server.argocd \
+                argocd login argocd-server.argocd \
                 --insecure \
                 --grpc-web \
                 --username admin \
