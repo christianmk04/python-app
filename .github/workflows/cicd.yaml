@@ -31,8 +31,8 @@ jobs:
                 tags: christianmk/python-app:${{ env.COMMIT_ID }}
         
     cd:
-        runs-on: self-hosted
         needs: ci
+        runs-on: self-hosted
         steps:
         
         -
