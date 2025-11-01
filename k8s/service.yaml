@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-app
+spec:
+  selector:
+    app: python-app # Must match the label in the Deployment
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 5000 # Refers to the containerPort in the Deployment

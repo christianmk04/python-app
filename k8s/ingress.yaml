@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: python-app
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "python-app.test.com"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: python-app # has to be the same as in service.yaml (the same metadata.name)
+            port:
+              number: 8080  # has to be the same as in service.yaml (the same spec.ports.port)
