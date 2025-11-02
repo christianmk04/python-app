@@ -43,9 +43,12 @@ jobs:
             shell: bash
             run: |
                 echo ${{needs.ci.outputs.commit_id}}
-                sudo apt update
-                sudo apt install -y yq
-                yq -Yi 'image.tag = "${{needs.ci.outputs.commit_id}}"' charts/python-app/values.yaml
+                VERSION=v4.44.3
+                BINARY=yq_linux_amd64
+                wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O yq
+                chmod +x yq
+                sudo mv yq /usr/local/bin/yq
+                yq -i '.image.tag = "${{needs.ci.outputs.commit_id}}"' charts/python-app/values.yaml
         -
             name: Commit changes
             uses: EndBug/add-and-commit@v9
