@@ -5,7 +5,7 @@ metadata:
   description: A simple Python application demonstrating Backstage integration.
   annotations:
     github.com/project-slug: christianmk/python-app
-    backstage.io/techdocs-ref: dir:.
+    backstage.io/techdocs-ref: docs
 spec:
   type: service
   owner: development 
